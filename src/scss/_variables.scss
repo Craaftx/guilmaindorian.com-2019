@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:500|Roboto&display=swap');
+
+/* --------- BREAK POINTS --------- */
+
+// Extra small devices (portrait phones, less than 576px) '(max-width: 576px)';
+// Small devices (landscape phones, less than 768px) '(max-width: 768px)';
+// Medium devices (tablets, less than 992px) '(max-width: 992px)';
+// Large devices (desktops, less than 1200px) '(max-width: 1200px)';
+// Large devices (large desktops, more than 1200px) '(max-width: 1600px)';
+
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+
+/* ------------ Colors ------------ */
+
+$color-back: #393e46;
+$color-back-inverse: #dddddd;
+
+/* ------------- Text ------------- */
+
+$color-write: #eeeeee;
+$color-write-inverse: #393e46;
+$color-primary: #3fc1c9;
+$color-primary-glow: #1bf4ff;
+$color-secondary: #222831;
+$color-white: #ffffff;
+$color-orange: #ff9800;
+
+/* -------------------------------- */
