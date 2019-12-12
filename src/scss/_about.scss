@@ -1162,7 +1162,6 @@ $about-breakpoint: 648px;
     &.floating-element {
       &::before {
         content: "";
-        transition: box-shadow 100ms;
         opacity: 0;
         background-color: #000;
         box-shadow: 0 0 20px 30px transparent, 0 0 40px 50px transparent;
