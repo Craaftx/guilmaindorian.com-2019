@@ -121,16 +121,29 @@
 
 @keyframes move_rocket {
   0% {
-    transform: translateX(-50%) rotate(-55deg);
+    transform: rotate(-10deg) translateX(0vw);
+    opacity: 1;
+  }
+  40% {
+    transform: rotate(-20deg) translateX(130vw);
+    opacity: 1;
+  }
+  41% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    transform: scale(-1, 1) rotate(10deg) translateX(-130vw) translateY(-5vh);
+    opacity: 1
   }
   90% {
-    transform: translateX(-50%) rotate(55deg);
+    transform: scale(-1, 1) rotate(-5deg) translateX(0vw) translateY(-5vh);
+    opacity: 1;
   }
-  95% {
-    transform: translateX(-50%) rotate(65deg);
-  }
-  100% {
-    transform: translateX(-50%) rotate(80deg);
+  91% {
+    opacity: 0;
   }
 }
 

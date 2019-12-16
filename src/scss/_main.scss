@@ -140,15 +140,9 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
   @media (max-width: 768px) {
-    height: 100px;
-    .navigation-brand {
+    flex-direction: column;
+    .navigation-brand span {
       float: none;
-      position: absolute;
-      top: 50%;
-      left: 10%;
-      transform-origin: center left;
-      transform: translateY(-50%) scale(0.5);
-      padding: 0px 0px;
     }
   }
 }

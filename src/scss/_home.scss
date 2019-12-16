@@ -43,7 +43,7 @@ $scene-color-mountain-shadow: #676767;
       z-index: 1;
       position: absolute;
       top: 10vh;
-      left: 1500px;
+      left: 80%;
       transform: rotate(-25deg);
       width: 200px;
       height: 200px;
@@ -104,8 +104,8 @@ $scene-color-mountain-shadow: #676767;
       z-index: 1;
       position: absolute;
       top: 5vh;
-      left: 150px;
-      transform: rotate(10deg) translateX(-10%);
+      left: 15%;
+      transform: rotate(10deg);
       width: 150px;
       height: 150px;
       filter: hue-rotate(200deg);
@@ -197,7 +197,7 @@ $scene-color-mountain-shadow: #676767;
       z-index: 1;
       position: absolute;
       top: 30vh;
-      left: 650px;
+      left: 45%;
       transform: rotate(10deg) translateX(-10%);
       width: 150px;
       height: 150px;
@@ -581,34 +581,27 @@ $scene-color-mountain-shadow: #676767;
     position: absolute;
     width: 100%;
     height: 100%;
-    bottom: 100px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 12;
-    @media (max-width: 992px) {
-      bottom: -100px;
-    }
     .rocket-route {
       position: absolute;
-      bottom: -250vh;
-      left: 50%;
-      transform: translateX(-50%) rotate(-45deg);
-      width: 340vh;
-      height: 310vh;
-      border-radius: 50%;
-      background-color: transparent;
-      animation: move_rocket 15s linear infinite;
+      bottom: 50vh;
+      left: -10vw;
+      width: 10px;
+      height: 10px;
+      animation: move_rocket 16s linear infinite;
       .rocket {
         position: absolute;
-        top: -100px;
-        left: 50%;
+        top: 0px;
+        left: 0%;
         width: 100px;
         height: 200px;
-        transform: translateX(-50%) scale(0.5) rotate(90deg);
+        transform: scale(0.5) rotate(90deg);
         cursor: pointer;
         .flame {
           opacity: 1;
-          animation: pulse_reactor 1s ease-in-out alternate infinite;
         }
       }
     }
@@ -616,9 +609,9 @@ $scene-color-mountain-shadow: #676767;
   .text-wrapper {
     z-index: 100;
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -40%);
+    transform: translateX(-50%);
     font-family: "Raleway", sans-serif;
     color: #ffffff;
     font-size: 3.5rem;
