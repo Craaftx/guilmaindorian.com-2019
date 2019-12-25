@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Web Developer, CSS Wizard`,
+    title: `Guilmain Dorian`,
     description: `Learn more about me by exploring my personnal website created with Gatsby.js and a lot of CSS.`,
     author: `@gatsbyjs`,
   },
