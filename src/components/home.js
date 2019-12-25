@@ -1,62 +1,62 @@
-import React, { useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
+
+let windowInnerWidth = window.innerWidth
+let pageX
 
 const Home = () => {
-  const [layerOne, setLayerOne] = useState("translateX(-50%)");
-  const [layerTwo, setLayerTwo] = useState("translateX(-50%)");
-  const [layerThree, setLayerThree] = useState("translateX(-50%)");
-  const [layerFour, setLayerFour] = useState("translateX(-50%)");
-  const [layerFifth, setLayerFifth] = useState("translateX(-50%)");
+  const layerOne = useRef()
+  const layerTwo = useRef()
+  const layerThree = useRef()
+  const layerFour = useRef()
+  const [cardIsHidden, setCardIsHidden] = useState(true)
 
-  const handleEvent = e => {
-    const pageX = e.clientX - window.innerWidth / 2
-    setLayerOne("translateX(-" + (50 + pageX / 200) + "%)");
-    setLayerTwo("translateX(-" + (50 + pageX / 400) + "%)");
-    setLayerThree("translateX(-" + (50 + pageX / 800) + "%)");
-    setLayerFour("translateX(-" + (50 + pageX / 1200) + "%)");
-    setLayerFifth("translateX(-" + (50 + pageX / 600) + "%)");
+  const handleParallax = e => {
+    pageX = e.clientX - windowInnerWidth / 2
   }
+
+  useEffect(() => {
+    let ref
+    const step = () => {
+      layerOne.current.style.transform = `translateX(-${50 + pageX / 200}%)`
+      layerTwo.current.style.transform = `translateX(-${50 + pageX / 400}%)`
+      layerThree.current.style.transform = `translateX(-${50 + pageX / 800}%)`
+      layerFour.current.style.transform = `translateX(-${50 + pageX / 1200}%)`
+      ref = requestAnimationFrame(step)
+    }
+    ref = requestAnimationFrame(step)
+    return () => {
+      cancelAnimationFrame(ref)
+    }
+  }, [])
 
   return (
     <section
       className="scene"
-      id="scene-wrapper"
       onMouseMove={e => {
-        handleEvent(e)
+        handleParallax(e)
       }}
     >
       <div className="noise" />
       <div className="scene-content">
-        <div className="mountains-wrapper" id="mountains-wrapper">
-          <div
-            className="mountains"
-            id="layer-1"
-            style={{ transform: layerOne }}
-          >
-            <div className="mountain" id="mountain-1" />
-            <div className="mountain" id="mountain-2" />
-            <div className="mountain" id="mountain-3" />
-            <div className="mountain" id="mountain-4" />
-            <div className="mountain" id="mountain-5" />
+        <div className="mountains-wrapper">
+          <div className="mountains layer-1" ref={layerOne}>
+            <div className="mountain mountain-1" />
+            <div className="mountain mountain-2" />
+            <div className="mountain mountain-3" />
+            <div className="mountain mountain-4" />
+            <div className="mountain mountain-5" />
           </div>
-          <div
-            className="mountains-2"
-            id="layer-2"
-            style={{ transform: layerTwo }}
-          >
-            <div className="mountain" id="mountain-6" />
-            <div className="mountain" id="mountain-7" />
-            <div className="mountain" id="mountain-8" />
-            <div className="mountain" id="mountain-9" />
-            <div className="mountain" id="mountain-10" />
+          <div className="mountains-2 layer-2" ref={layerTwo}>
+            <div className="mountain mountain-6" />
+            <div className="mountain mountain-7" />
+            <div className="mountain mountain-8" />
+            <div className="mountain mountain-9" />
+            <div className="mountain mountain-10" />
           </div>
         </div>
         <div className="light" />
-        <div className="planets-wrapper" id="planets-wrapper">
-          <div
-            className="planets"
-            id="layer-3"
-            style={{ transform: layerThree }}
-          >
+        <div className="planets-wrapper">
+          <div className="planets layer-3" ref={layerThree}>
             <div className="planet-1">
               <div className="shadow" />
               <div className="body" />
@@ -85,7 +85,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <ul className="stars" id="layer-4" style={{ transform: layerFour }}>
+        <ul className="stars layer-3" ref={layerFour}>
           <li />
           <li />
           <li />
@@ -98,8 +98,13 @@ const Home = () => {
           <li />
         </ul>
         <div className="rocket-wrapper">
-          <div className="rocket-route" id="secret_rocket_route">
-            <div className="rocket" id="secret_rocket_homepage">
+          <div className="rocket-route">
+            <div
+              className="rocket"
+              onClick={() => {
+                setCardIsHidden(false)
+              }}
+            >
               <div className="reactor" />
               <div className="wing wing-1" />
               <div className="wing wing-2" />
@@ -110,24 +115,20 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div
-          className="text-wrapper"
-          id="scene-text"
-          style={{ transform: layerFifth }}
-        >
+        <div className="text-wrapper" id="scene-text">
           <span className="animated">
             I have no special talent. I am only passionately
           </span>
           <b className="color-primary">&nbsp;curious</b>
         </div>
-        <span className="hide-text" id="hide_text_btn">
-          Hide text
-        </span>
       </div>
-      <div className="secret-wrapper" id="rocket_secret_wrapper">
+      <div
+        className="secret-wrapper"
+        style={{ display: cardIsHidden ? "none" : "block" }}
+      >
         <div className="secret">
           <div className="small-scene">
-            <ul className="stars" id="secret_rocket_stars">
+            <ul className="stars">
               <li />
               <li />
               <li />
@@ -139,7 +140,7 @@ const Home = () => {
               <li />
               <li />
             </ul>
-            <div className="rocket" id="secret_rocket">
+            <div className="rocket">
               <div className="reactor" />
               <div className="wing wing-1" />
               <div className="wing wing-2" />
@@ -151,8 +152,22 @@ const Home = () => {
           </div>
           <div className="text">
             <h4>Why do you click here ?</h4>
-            <span id="rocket_secret_wrapper_right_answer">I'm curious</span>
-            <span id="rocket_secret_wrapper_false_answer">I'm smart</span>
+            <span
+              id="rocket_secret_wrapper_right_answer"
+              onClick={() => {
+                setCardIsHidden(true)
+              }}
+            >
+              I'm curious
+            </span>
+            <span
+              id="rocket_secret_wrapper_false_answer"
+              onClick={() => {
+                setCardIsHidden(true)
+              }}
+            >
+              I'm smart
+            </span>
           </div>
         </div>
       </div>
