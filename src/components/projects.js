@@ -2,6 +2,9 @@ import React, { useRef, useEffect, useCallback } from "react"
 
 const distancePerIteration = 4
 
+const maxWidthValue = window.clientWidth
+const maxHeightValue = window.clientHeight
+
 let keysPressed = {
   90: null,
   87: null,
@@ -11,7 +14,7 @@ let keysPressed = {
   68: null,
 }
 
-const initialRocketLeft = "50%"
+const initialRocketLeft = `${maxWidthValue / 2}px`
 
 const Projects = () => {
   let keyboard = {
@@ -195,10 +198,6 @@ const Projects = () => {
     keyUpEventHandler(e)
   })
 
-
-  let maxWidthValue = window.clientWidth
-  let maxHeightValue = window.clientHeight
-
   const calculateNewValue = useCallback(
     (oldValue, axis) => {
       const keyCode1 =
@@ -217,15 +216,13 @@ const Projects = () => {
       keyboard.keyTop.value,
       keyboard.keyRight.value,
       keyboard.keyBottom.value,
-      maxHeightValue,
-      maxWidthValue,
     ]
   )
 
   useEffect(() => {
     let ref
-    rocket.current.style.left = `${ 2}px`;
-    rocket.current.style.top = `${ 2}px`;
+    rocket.current.style.left = `${maxHeightValue / 2}px`;
+    rocket.current.style.top = `${maxWidthValue / 2}px`;
     const step = () => {
       rocket.current.style.left = `${calculateNewValue(
         rocket.current.style.left,
@@ -286,9 +283,9 @@ const Projects = () => {
             <div className="wing wing-2" />
             <div className="body" />
             <div className="glass" />
-            <div className="rocketFlame.current" ref={rocketFlame} />
+            <div className="flame" ref={rocketFlame} />
             <div className="reactor-2" />
-            <div className="rocketFlame.current-push" />
+            <div className="flame-push" />
           </div>
         </div>
         <div
