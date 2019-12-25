@@ -71,10 +71,10 @@
 
 @keyframes primary_glow {
   0% {
-    filter: brightness(1);
+    opacity: 1;
   }
   100% {
-    filter: brightness(0.6);
+    opacity: 0.6;
   }
 }
 
@@ -190,44 +190,36 @@
 
 @keyframes spinning {
   0% {
-    will-change: transform;
     transform: rotate(0deg);
   }
   100% {
-    will-change: transform;
     transform: rotate(360deg);
   }
 }
 
 @keyframes mirror_spinning {
   0% {
-    will-change: transform;
     transform: rotate(0deg);
   }
   100% {
-    will-change: transform;
     transform: rotate(180deg);
   }
 }
 
 @keyframes half_mirror_spinning {
   0% {
-    will-change: transform;
     transform: rotate(0deg);
   }
   100% {
-    will-change: transform;
     transform: rotate(270deg);
   }
 }
 
 @keyframes reverse_half_mirror_spinning {
   0% {
-    will-change: transform;
     transform: rotate(0deg);
   }
   100% {
-    will-change: transform;
     transform: rotate(-270deg);
   }
 }
@@ -270,11 +262,9 @@
 
 @keyframes breath_monster {
   0% {
-    will-change: transform;
     transform: rotate(0deg);
   }
   100% {
-    will-change: transform;
     transform: rotate(-270deg);
   }
 }
@@ -448,14 +438,5 @@
   }
   100% {
     transform: scale(0.3) rotate(360deg);
-  }
-}
-
-@keyframes screen-glow {
-  0% {
-    box-shadow: 0px -5px 40px 20px #0ff;
-  }
-  100% {
-    box-shadow: 0px -5px 65px 20px #0ff;
   }
 }
