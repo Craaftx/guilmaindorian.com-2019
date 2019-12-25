@@ -1,11 +1,253 @@
-import React from "react"
+import React, { useRef, useEffect, useCallback } from "react"
+
+const distancePerIteration = 4
+
+let keysPressed = {
+  90: null,
+  87: null,
+  83: null,
+  81: null,
+  65: null,
+  68: null,
+}
+
+const initialRocketLeft = "50%"
 
 const Projects = () => {
+  let keyboard = {
+    layout: "Azerty",
+    keyTop: { label: "Z", value: 90 },
+    keyBottom: { label: "S", value: 83 },
+    keyLeft: { label: "Q", value: 81 },
+    keyRight: { label: "D", value: 68 },
+  }
+
+  const switchKeyboard = layout => {
+    if (layout === "Qwerty") {
+      keyboard = {
+        layout: "Qwerty",
+        keyTop: { label: "W", value: 87 },
+        keyBottom: { label: "S", value: 83 },
+        keyLeft: { label: "A", value: 65 },
+        keyRight: { label: "D", value: 68 },
+      }
+      keyTop.current.innerHTML = keyboard.keyTop.label
+      keyBottom.current.innerHTML = keyboard.keyBottom.label
+      keyLeft.current.innerHTML = keyboard.keyLeft.label
+      keyRight.current.innerHTML = keyboard.keyRight.label
+    } else {
+      keyboard = {
+        layout: "Azerty",
+        keyTop: { label: "Z", value: 90 },
+        keyBottom: { label: "S", value: 83 },
+        keyLeft: { label: "Q", value: 81 },
+        keyRight: { label: "D", value: 68 },
+      }
+      keyTop.current.innerHTML = keyboard.keyTop.label
+      keyBottom.current.innerHTML = keyboard.keyBottom.label
+      keyLeft.current.innerHTML = keyboard.keyLeft.label
+      keyRight.current.innerHTML = keyboard.keyRight.label
+    }
+  }
+
+  const scene = useRef()
+  const stars = useRef()
+  const spaceLight = useRef()
+  const universe1 = useRef()
+  const universe2 = useRef()
+  const universe3 = useRef()
+
+  const rocket = useRef()
+  const rocketWrapper = useRef()
+  const rocketFlame = useRef()
+
+  const controls = useRef()
+  const tips = useRef()
+
+  const keyTop = useRef()
+  const keyBottom = useRef()
+  const keyLeft = useRef()
+  const keyRight = useRef()
+
+  let actualUniverse = 0
+  const maxUniverse = 2
+
+  const universes = [universe1, universe2, universe3]
+
+  const transition = (from, to, speed) => {
+    const universeFrom = universes[from].current
+    const universeTo = universes[to].current
+    if (speed === "fast-forward") {
+      rocket.current.classList.add("fast-push")
+      setTimeout(function() {
+        rocket.current.classList.remove("fast-push")
+      }, 4000)
+    } else {
+      rocket.current.classList.add("push")
+      setTimeout(function() {
+        rocket.current.classList.remove("push")
+      }, 4000)
+    }
+    setTimeout(function() {
+      universeFrom.style.opacity = "0"
+      controls.current.style.opacity = "0"
+      spaceLight.current.style.opacity = "0"
+    }, 1000)
+    setTimeout(function() {
+      universeFrom.style.display = "none"
+      universeFrom.style.opacity = "0"
+      universeTo.style.display = "block"
+      universeTo.style.opacity = "0"
+      rocket.current.style.left = initialRocketLeft
+    }, 2000)
+    setTimeout(function() {
+      universeTo.style.opacity = "1"
+      controls.current.style.opacity = "1"
+      spaceLight.current.style.opacity = "0.6"
+    }, 3500)
+  }
+
+  const changeUniverse = speed => {
+    const oldUniverse = actualUniverse
+    if (actualUniverse === maxUniverse) {
+      actualUniverse = 0
+      transition(oldUniverse, actualUniverse, speed)
+    } else {
+      if (speed === "fast-forward") {
+        actualUniverse = maxUniverse
+        transition(oldUniverse, actualUniverse, speed)
+      } else {
+        actualUniverse = actualUniverse + 1
+        transition(oldUniverse, actualUniverse, speed)
+      }
+    }
+  }
+
+  const keyDownEventHandler = event => {
+    keysPressed[event.which] = true
+    switch (event.which) {
+      case keyboard.keyTop.value:
+        rocket.current.style.transform = "scale(0.4) rotate(0deg)"
+        rocketFlame.current.style.animation =
+          "pulse_reactor 0.5s ease-in-out alternate infinite"
+        rocketFlame.current.style.opacity = "1"
+        keyTop.current.style.color = "#FF9800"
+        break
+      case keyboard.keyBottom.value:
+        rocket.current.style.transform = "scale(0.4) rotate(180deg)"
+        rocketFlame.current.style.animation =
+          "pulse_reactor 0.5s ease-in-out alternate infinite"
+        rocketFlame.current.style.opacity = "1"
+        keyBottom.current.style.color = "#FF9800"
+        break
+      case keyboard.keyRight.value:
+        rocket.current.style.transform = "scale(0.4) rotate(90deg)"
+        rocketFlame.current.style.animation =
+          "pulse_reactor 0.5s ease-in-out alternate infinite"
+        rocketFlame.current.style.opacity = "1"
+        keyRight.current.style.color = "#FF9800"
+        break
+      case keyboard.keyLeft.value:
+        rocket.current.style.transform = "scale(0.4) rotate(270deg)"
+        rocketFlame.current.style.animation =
+          "pulse_reactor 0.5s ease-in-out alternate infinite"
+        rocketFlame.current.style.opacity = "1"
+        keyLeft.current.style.color = "#FF9800"
+        break
+      default:
+        return
+    }
+  }
+
+  const keyUpEventHandler = event => {
+    keysPressed[event.which] = false
+    switch (event.which) {
+      case keyboard.keyTop.value:
+        keyTop.current.style.color = "#eeeeee"
+        rocketFlame.current.style.animation = "none"
+        rocketFlame.current.style.opacity = "0"
+        break
+      case keyboard.keyBottom.value:
+        keyBottom.current.style.color = "#eeeeee"
+        rocketFlame.current.style.animation = "none"
+        rocketFlame.current.style.opacity = "0"
+        break
+      case keyboard.keyRight.value:
+        keyRight.current.style.color = "#eeeeee"
+        rocketFlame.current.style.animation = "none"
+        rocketFlame.current.style.opacity = "0"
+        break
+      case keyboard.keyLeft.value:
+        keyLeft.current.style.color = "#eeeeee"
+        rocketFlame.current.style.animation = "none"
+        rocketFlame.current.style.opacity = "0"
+        break
+      default:
+        return
+    }
+  }
+
+  window.addEventListener("keydown", e => {
+    keyDownEventHandler(e)
+  })
+
+  window.addEventListener("keyup", e => {
+    keyUpEventHandler(e)
+  })
+
+
+  let maxWidthValue = window.clientWidth
+  let maxHeightValue = window.clientHeight
+
+  const calculateNewValue = useCallback(
+    (oldValue, axis) => {
+      const keyCode1 =
+        axis === "X" ? keyboard.keyLeft.value : keyboard.keyTop.value
+      const keyCode2 =
+        axis === "X" ? keyboard.keyRight.value : keyboard.keyBottom.value
+      const maxValue = axis === "Y" ? maxHeightValue : maxWidthValue
+      const newValue =
+        parseInt(oldValue, 10) -
+        (keysPressed[keyCode1] ? distancePerIteration : 0) +
+        (keysPressed[keyCode2] ? distancePerIteration : 0)
+      return newValue < 0 ? 0 : newValue > maxValue ? maxValue : newValue
+    },
+    [
+      keyboard.keyLeft.value,
+      keyboard.keyTop.value,
+      keyboard.keyRight.value,
+      keyboard.keyBottom.value,
+      maxHeightValue,
+      maxWidthValue,
+    ]
+  )
+
+  useEffect(() => {
+    let ref
+    rocket.current.style.left = `${ 2}px`;
+    rocket.current.style.top = `${ 2}px`;
+    const step = () => {
+      rocket.current.style.left = `${calculateNewValue(
+        rocket.current.style.left,
+        "X"
+      )}px`
+      rocket.current.style.top = `${calculateNewValue(
+        rocket.current.style.top,
+        "Y"
+      )}px`
+      ref = requestAnimationFrame(step)
+    }
+    ref = requestAnimationFrame(step)
+    return () => {
+      cancelAnimationFrame(ref)
+    }
+  }, [calculateNewValue])
+
   return (
-    <section className="projects" id="projects">
-      <div className="scene-project d-none d-lg-block" id="scene-project">
-        <div className="light" id="project-light" />
-        <ul className="stars">
+    <section className="projects" ref={scene}>
+      <div className="scene-project d-none d-lg-block">
+        <div className="light" ref={spaceLight} />
+        <ul className="stars" ref={stars}>
           <li />
           <li />
           <li />
@@ -37,19 +279,26 @@ const Projects = () => {
           <li />
           <li />
         </ul>
-        <div id="rocket-wrapper">
-          <div className="rocket" id="project-rocket">
+        <div className="rocket-wrapper" ref={rocketWrapper}>
+          <div className="rocket" ref={rocket}>
             <div className="reactor" />
             <div className="wing wing-1" />
             <div className="wing wing-2" />
             <div className="body" />
             <div className="glass" />
-            <div className="flame" id="rocket-flame" />
+            <div className="rocketFlame.current" ref={rocketFlame} />
             <div className="reactor-2" />
-            <div className="flame-push" />
+            <div className="rocketFlame.current-push" />
           </div>
         </div>
-        <div className="project-planets-wrapper" id="universe-1">
+        <div
+          className="project-planets-wrapper"
+          ref={universe1}
+          style={{
+            opacity: 1,
+            display: "block",
+          }}
+        >
           <h3 className="system-info">U.001</h3>
           <div className="planet-1 planet-info">
             <div className="info">
@@ -72,7 +321,7 @@ const Projects = () => {
                 <a
                   href="https://craaftx.github.io/codepenProjects/"
                   target="_blank"
-                  rel="noopener noreferrer" 
+                  rel="noopener noreferrer"
                 >
                   Landing
                 </a>
@@ -96,7 +345,7 @@ const Projects = () => {
                 <a
                   href="https://craaftx.github.io/100dayscss/"
                   target="_blank"
-                  rel="noopener noreferrer" 
+                  rel="noopener noreferrer"
                 >
                   Landing
                 </a>
@@ -113,7 +362,7 @@ const Projects = () => {
             </ul>
           </div>
         </div>
-        <div className="project-planets-wrapper" id="universe-2">
+        <div className="project-planets-wrapper" ref={universe2}>
           <h3 className="system-info">U.002</h3>
           <ul className="asteroids-ring">
             <li />
@@ -160,7 +409,7 @@ const Projects = () => {
                 <a
                   href="https://craaftx.github.io/UniLan/"
                   target="_blank"
-                  rel="noopener noreferrer" 
+                  rel="noopener noreferrer"
                 >
                   Landing
                 </a>
@@ -186,7 +435,7 @@ const Projects = () => {
                 <a
                   href="https://craaftx.github.io/portfolio/"
                   target="_blank"
-                  rel="noopener noreferrer" 
+                  rel="noopener noreferrer"
                 >
                   Landing
                 </a>
@@ -205,7 +454,7 @@ const Projects = () => {
             </ul>
           </div>
         </div>
-        <div className="project-planets-wrapper" id="universe-3">
+        <div className="project-planets-wrapper" ref={universe3}>
           <h3 className="system-info">U.003</h3>
           <div className="planet-7 planet-info">
             <div className="info">
@@ -264,9 +513,14 @@ const Projects = () => {
             </ul>
           </div>
         </div>
-        <div id="controls">
+        <div className="universe_controls" ref={controls}>
           <h1>projects</h1>
-          <div className="forward" id="project-forward-button">
+          <div
+            className="forward"
+            onClick={() => {
+              changeUniverse("forward")
+            }}
+          >
             <svg
               aria-hidden="true"
               focusable="false"
@@ -283,7 +537,12 @@ const Projects = () => {
             </svg>
             Forward
           </div>
-          <div className="forward" id="project-fast-forward-button">
+          <div
+            className="forward"
+            onClick={() => {
+              changeUniverse("fast-forward")
+            }}
+          >
             <svg
               aria-hidden="true"
               focusable="false"
@@ -301,17 +560,37 @@ const Projects = () => {
             Fast Forward
           </div>
         </div>
-        <div className="tips">
+        <div className="tips" ref={tips}>
           <div className="keys">
-            <span id="key-up">Z</span>
-            <span id="key-down">S</span>
-            <span id="key-left">Q</span>
-            <span id="key-right">D</span>
+            <span ref={keyTop} className="key-top">
+              {keyboard.keyTop.label}
+            </span>
+            <span ref={keyBottom} className="key-bottom">
+              {keyboard.keyBottom.label}
+            </span>
+            <span ref={keyLeft} className="key-left">
+              {keyboard.keyLeft.label}
+            </span>
+            <span ref={keyRight} className="key-right">
+              {keyboard.keyRight.label}
+            </span>
           </div>
           <div className="keyboard">
             <h6>Use the keyboard to control the spaceship</h6>
-            <span id="change-keyboard-button-qwerty">Qwerty ?</span>
-            <span id="change-keyboard-button-azerty">Azerty ?</span>
+            <span
+              onClick={() => {
+                switchKeyboard("Qwerty")
+              }}
+            >
+              Qwerty ?
+            </span>
+            <span
+              onClick={() => {
+                switchKeyboard("Azerty")
+              }}
+            >
+              Azerty ?
+            </span>
           </div>
         </div>
       </div>
@@ -337,7 +616,7 @@ const Projects = () => {
               <a
                 href="https://craaftx.github.io/codepenProjects/"
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
               >
                 Visit
               </a>
@@ -365,7 +644,7 @@ const Projects = () => {
               <a
                 href="https://craaftx.github.io/100dayscss/"
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
               >
                 Visit
               </a>
@@ -398,7 +677,7 @@ const Projects = () => {
               <a
                 href="https://craaftx.github.io/UniLan/"
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
               >
                 Visit
               </a>
@@ -430,7 +709,7 @@ const Projects = () => {
               <a
                 href="https://craaftx.github.io/portfolio/"
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
               >
                 Visit
               </a>
@@ -460,4 +739,4 @@ const Projects = () => {
   )
 }
 
-export default Projects;
+export default Projects

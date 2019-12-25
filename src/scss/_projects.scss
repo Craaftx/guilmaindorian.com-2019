@@ -228,7 +228,7 @@
         left: 36%;
       }
     }
-    #controls {
+    .universe_controls {
       z-index: 50;
       position: absolute;
       bottom: 20px;
@@ -285,25 +285,25 @@
           border: 2px solid $color-white;
           border-radius: 2px;
         }
-        #key-up {
+        .key-top {
           position: absolute;
           top: 0px;
           left: 50%;
           transform: translateX(-50%);
         }
-        #key-down {
+        .key-bottom {
           position: absolute;
           top: 24px;
           left: 50%;
           transform: translateX(-50%);
         }
-        #key-right {
+        .key-right {
           position: absolute;
           top: 24px;
           left: 80%;
           transform: translateX(-80%);
         }
-        #key-left {
+        .key-left {
           position: absolute;
           top: 24px;
           left: 20%;
@@ -327,7 +327,7 @@
         }
       }
     }
-    #rocket-wrapper {
+    .rocket-wrapper {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -425,10 +425,6 @@
     z-index: 10;
     opacity: 0;
     display: none;
-    &#universe-1 {
-      opacity: 1;
-      display: block;
-    }
     .system-info {
       position: absolute;
       top: 20px;
