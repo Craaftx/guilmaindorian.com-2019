@@ -7,3 +7,11 @@
 @import "secret";
 @import "keyframes";
 @import "responsive";
+
+.animation-disabled * {
+    animation-play-state: paused !important;
+}
+
+.animation-enabled * {
+    animation-play-state: running !important;
+}
