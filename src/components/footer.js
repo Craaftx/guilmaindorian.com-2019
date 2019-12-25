@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div className="row">
         <div className="col-12 text-center">
-          Copyright © - Guilmain Dorian
+          Created with 💜 by Guilmain Dorian
           <br />
           <small>
             <b>Creativity is contagious. Pass it on.</b>
