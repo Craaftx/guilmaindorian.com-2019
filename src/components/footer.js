@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div className="row">
         <div className="col-12 text-center">
-          Created with 💜 by Guilmain Dorian
+          Created with <span role="img" aria-label="Purple Heart">💜</span> by Guilmain Dorian
           <br />
           <small>
             <b>Creativity is contagious. Pass it on.</b>
