@@ -1,15 +1,74 @@
-import React from "react"
+import React, { useState, useRef, useEffect } from "react"
+
+let windowInnerHeight = window.innerHeight
+let pageY
 
 const Contact = () => {
+  const characterArm = useRef()
+  const characterLamp = useRef()
+  const characterHead = useRef()
+  const [enigmaMemory, setEnigmaMemory] = useState({
+    symbol1: null,
+    symbol2: null,
+    symbol3: null,
+    symbol4: null,
+    symbol5: null,
+    symbol6: null,
+    symbol7: null,
+    symbol8: null,
+    symbol9: null,
+  })
+
+  const lampMovement = e => {
+    pageY = e.clientY - windowInnerHeight / 2
+  }
+
+  useEffect(() => {
+    let ref
+    const step = () => {
+      characterArm.current.style.transform = `rotate(${-60 + pageY / 10}deg)`
+      characterLamp.current.style.transform = `rotate(${-60 + pageY / 10}deg)`
+      characterHead.current.style.transform = `translateX(-54%) rotate(${-30 +
+        pageY / 10}deg)`
+      ref = requestAnimationFrame(step)
+    }
+    ref = requestAnimationFrame(step)
+    return () => {
+      cancelAnimationFrame(ref)
+    }
+  }, [])
+
+  useEffect(() => {
+    const memory = enigmaMemory
+    if (
+      memory.symbol4 &&
+      memory.symbol6 &&
+      memory.symbol8 &&
+      !memory.symbol1 &&
+      !memory.symbol2 &&
+      !memory.symbol5 &&
+      !memory.symbol7 &&
+      !memory.symbol9
+    ) {
+      console.log("win")
+    }
+  }, [enigmaMemory])
+
   return (
-    <section className="contact" id="contact">
-      <div id="lamp_scene" className="d-none d-xl-block">
+    <section
+      className="contact"
+      onMouseMove={e => {
+        lampMovement(e)
+      }}
+    >
+      <div className="d-none d-xl-block lamp_scene">
         <div className="character">
-          <div className="head" id="character_head" />
+          <div className="head" ref={characterHead} />
           <div className="body" />
           <div
             className="arm"
             id="lamp_arm"
+            ref={characterLamp}
             style={{ transform: "rotate(-45deg)" }}
           >
             <div className="forearm">
@@ -20,7 +79,12 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="arm" id="arm" style={{ transform: "rotate(-45deg)" }}>
+          <div
+            className="arm"
+            id="arm"
+            ref={characterArm}
+            style={{ transform: "rotate(-45deg)" }}
+          >
             <div className="forearm">
               <div className="lamp" />
             </div>
@@ -28,7 +92,7 @@ const Contact = () => {
           <div className="backpack" />
           <div className="legs" />
         </div>
-        <div id="no-character">
+        <div className="no-character">
           <ul className="cave">
             <li />
             <li />
@@ -173,7 +237,11 @@ const Contact = () => {
             </a>
           </li>
           <li>
-            <a href="https://github.com/Craaftx" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/Craaftx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -195,70 +263,106 @@ const Contact = () => {
         <p>
           Thank you for taking your time to read my website and I hope you
           enjoyed the small scenes created
-          <b className="color-orange">only with CSS</b>, you can check the code
-          with your inspector :D
+          <b className="color-orange">&nbsp; only with CSS</b>, you can check
+          the code with your inspector :D
         </p>
         <ul className="enigma mt-4 d-none d-xl-block">
           <li
-            className="disabled"
-            id="b_enigma_0"
-            style={{ animationDelay: "0.2s" }}
+            style={{ color: enigmaMemory.symbol1 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol1: prevState.symbol1 ? null : "set",
+              }))
+            }}
           >
             ᚠ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_1"
-            style={{ animationDelay: "0.4s" }}
+            style={{ color: enigmaMemory.symbol2 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol2: prevState.symbol2 ? null : "set",
+              }))
+            }}
           >
             ᚢ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_2"
-            style={{ animationDelay: "0.6s" }}
+            style={{ color: enigmaMemory.symbol3 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol3: prevState.symbol3 ? null : "set",
+              }))
+            }}
           >
             ᚣ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_3"
-            style={{ animationDelay: "0.8s" }}
+            style={{ color: enigmaMemory.symbol4 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol4: prevState.symbol4 ? null : "set",
+              }))
+            }}
           >
             ᚦ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_4"
-            style={{ animationDelay: "1.0s" }}
+            style={{ color: enigmaMemory.symbol5 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol5: prevState.symbol5 ? null : "set",
+              }))
+            }}
           >
             ᚥ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_5"
-            style={{ animationDelay: "1.2s" }}
+            style={{ color: enigmaMemory.symbol6 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol6: prevState.symbol6 ? null : "set",
+              }))
+            }}
           >
             ᚬ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_6"
-            style={{ animationDelay: "1.4s" }}
+            style={{ color: enigmaMemory.symbol7 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol7: prevState.symbol7 ? null : "set",
+              }))
+            }}
           >
             ᚳ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_7"
-            style={{ animationDelay: "1.6s" }}
+            style={{ color: enigmaMemory.symbol8 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol8: prevState.symbol8 ? null : "set",
+              }))
+            }}
           >
             ᚸ
           </li>
           <li
-            className="disabled"
-            id="b_enigma_8"
-            style={{ animationDelay: "1.8s" }}
+            style={{ color: enigmaMemory.symbol9 ? "#ff9800" : "currentColor" }}
+            onClick={() => {
+              setEnigmaMemory(prevState => ({
+                ...prevState,
+                symbol9: prevState.symbol9 ? null : "set",
+              }))
+            }}
           >
             ᚢ
           </li>
@@ -274,4 +378,4 @@ const Contact = () => {
   )
 }
 
-export default Contact;
+export default Contact

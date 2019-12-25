@@ -10,7 +10,7 @@ $monster-5: #0e2f3b;
   min-height: 100vh;
   width: 100vw;
   background-color: darken($color-secondary, 10%);
-  #lamp_scene {
+  .lamp_scene {
     z-index: 100;
     position: absolute;
     bottom: 0;
@@ -20,7 +20,7 @@ $monster-5: #0e2f3b;
     height: 100%;
     overflow: hidden;
     transform-origin: bottom left;
-    #no-character {
+    .no-character {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -78,30 +78,44 @@ $monster-5: #0e2f3b;
               position: absolute;
               top: -10px;
               left: -100px;
-              width: 600vw;
-              height: 600vh;
+              width: 120vw;
+              height: 200vh;
               transform-origin: top left;
               transform: rotate(10deg);
               background-color: darken($color-secondary, 10%);
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0; left: -100vw;
+                height: 100%; width: 100vw;
+                background-color: darken($color-secondary, 10%);
+              }
             }
             .mask-bottom {
               z-index: 85;
               position: absolute;
               bottom: -10px;
               left: -100px;
-              width: 600vw;
-              height: 600vh;
+              width: 120vw;
+              height: 200vh;
               transform-origin: bottom left;
               transform: rotate(-10deg);
               background-color: darken($color-secondary, 10%);
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0; left: -100vw;
+                height: 100%; width: 100vw;
+                background-color: darken($color-secondary, 10%);
+              }
             }
             .light {
               z-index: 80;
               position: absolute;
-              bottom: -100vh;
+              bottom: -40vh;
               left: -100px;
-              width: 600vw;
-              height: 600vh;
+              width: 100vw;
+              height: 100vh;
               background-color: rgba(goldenrod, 0.01);
             }
           }
@@ -115,8 +129,6 @@ $monster-5: #0e2f3b;
       height: 100%;
       bottom: 0;
       left: 0;
-      transform-origin: right top;
-      transform: scale(1);
       list-style: none;
       li {
         position: absolute;
@@ -868,15 +880,12 @@ $monster-5: #0e2f3b;
           cursor: pointer;
           color: $color-primary;
         }
-        &.enabled {
-          color: $color-orange;
-        }
       }
     }
   }
   @media (max-width: 1200px) {
     padding-bottom: 5vh;
-    #lamp_scene {
+    .lamp_scene {
       overflow: hidden;
       width: 200%;
       transform: scale(0.5);
@@ -895,7 +904,7 @@ $monster-5: #0e2f3b;
         font-size: 4.2rem;
       }
     }
-    #lamp_scene {
+    .lamp_scene {
       overflow: hidden;
       height: 80%;
       width: 330%;
