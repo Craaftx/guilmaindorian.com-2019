@@ -5,6 +5,7 @@ html {
   line-height: 1.15;
   background-color: $color-back;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *, *::after, *::before {
@@ -136,6 +137,7 @@ h1, h2, h3, h4, h5, h6 {
         letter-spacing: 2px;
         text-transform: uppercase;
         font-size: 14px;
+        cursor: pointer;
       }
     }
   }
@@ -173,15 +175,13 @@ footer {
 
 /* --- Medal animation --- */
 
-#earn-medal {
-  transition: 1s;
+.earn-medal {
   z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
-  display: none;
   .background {
     position: absolute;
     top: 50%;
@@ -574,12 +574,12 @@ footer {
 }
 
 /* Skin Greyscale */
-.rocket.greyscale_skin {
+.rocket.skin_greyscale {
   filter: grayscale(100%);
 }
 
 /* Skin Invisible */
-.character.invisible_skin {
+.character.skin_invisible {
   .head {
     background-color: rgba($color-white, 0.02);
     &::after {
@@ -589,14 +589,14 @@ footer {
   .body {
     background-color: rgba($color-white, 0.02);
     &::before {
-      background-color: rgba($color-white, 2%);
+      background-color: rgba($color-white, 0.02);
     }
     &::after {
-      background-color: rgba($color-white, 2%);
+      background-color: rgba($color-white, 0.02);
     }
   }
   .backpack {
-    background-color: rgba($color-white, 2%);
+    background-color: rgba($color-white, 0.02);
   }
   .legs {
     background-color: rgba($color-white, 0.02);
@@ -625,7 +625,7 @@ footer {
 }
 
 /* Skin Golden */
-.rocket.golden_skin {
+.rocket.skin_golden {
   .reactor {
     background-color: #333333;
   }
@@ -668,7 +668,7 @@ footer {
     border: 5px solid #f63002;
   }
 }
-.character.golden_skin {
+.character.skin_golden {
   .head {
     background-color: darken(#d5cfb2, 15%);
     &::after {
@@ -710,7 +710,7 @@ footer {
 }
 
 /* Skin Night */
-.rocket.night_skin {
+.rocket.skin_night {
   .reactor {
     background-color: #333333;
   }
@@ -753,7 +753,7 @@ footer {
     border: 5px solid #f63002;
   }
 }
-.character.night_skin {
+.character.skin_night {
   .head {
     background-color: lighten($color-secondary, 5%);
     &::after {
@@ -799,7 +799,7 @@ footer {
 }
 
 /* Skin Explorer */
-.rocket.explorer_skin {
+.rocket.skin_explorer {
   .reactor {
     background-color: #333333;
   }
@@ -842,7 +842,7 @@ footer {
     border: 5px solid #f63002;
   }
 }
-.character.explorer_skin {
+.character.skin_explorer {
   .head {
     background-color: $color-white;
     &::after {
@@ -889,7 +889,7 @@ footer {
 }
 
 /* Skins Runic */
-.rocket.runic_skin {
+.rocket.skin_runic {
   .reactor {
     background-color: #333333;
   }
@@ -942,7 +942,7 @@ footer {
     border: 5px solid #f63002;
   }
 }
-.character.runic_skin {
+.character.skin_runic {
   .head {
     background-color: lighten($color-secondary, 20%);
     &::after {

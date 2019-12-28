@@ -818,29 +818,26 @@ $monster-5: #0e2f3b;
     }
     h4 {
       text-transform: uppercase;
-      letter-spacing: 0.3rem;
       margin: 10px 0px;
       padding: 0;
     }
     p {
-      text-align: justify;
       color: rgba($color-write, 0.8);
-      letter-spacing: 1px;
       font-weight: 100;
     }
     ul.social {
-      margin: 10px 0px 20px 0px;
+      margin: 20px 0px 20px 0px;
       padding: 0;
       li {
         display: inline-block;
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         margin: 0 10px 0 0;
         a {
           display: inline-block;
           position: relative;
-          width: 70px;
-          height: 70px;
+          width: 50px;
+          height: 50px;
           border: 2px solid rgba($color-white, 0.8);
           border-radius: 50%;
           text-decoration: none;
@@ -851,8 +848,8 @@ $monster-5: #0e2f3b;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
+            width: 16px;
+            height: 16px;
           }
           &:hover {
             border-color: $color-orange;
@@ -863,10 +860,8 @@ $monster-5: #0e2f3b;
     }
     ul.enigma {
       display: block;
-      margin: 0;
-      padding: 5px;
-      width: 175px;
-      border: 3px solid $color-white;
+      margin: 20px 0 0 0;
+      padding: 0px;
       li {
         display: inline-block;
         width: 50px;
@@ -874,7 +869,7 @@ $monster-5: #0e2f3b;
         margin: 0;
         padding: 0;
         font-size: 30px;
-        text-align: center;
+        text-align: left;
         &:hover {
           transition: 0.4s;
           cursor: pointer;
