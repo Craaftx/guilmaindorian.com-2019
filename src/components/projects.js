@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useCallback } from "react"
+import PropTypes from "prop-types"
 
 const distancePerIteration = 4
 
-const maxWidthValue = window.clientWidth
-const maxHeightValue = window.clientHeight
+const maxWidthValue = window.innerWidth - 100
+const maxHeightValue = window.innerHeight - 100
 
 let keysPressed = {
   90: null,
@@ -16,7 +17,7 @@ let keysPressed = {
 
 const initialRocketLeft = `${maxWidthValue / 2}px`
 
-const Projects = () => {
+const Projects = ({ obtainMedal }) => {
   let keyboard = {
     layout: "Azerty",
     keyTop: { label: "Z", value: 90 },
@@ -221,8 +222,8 @@ const Projects = () => {
 
   useEffect(() => {
     let ref
-    rocket.current.style.left = `${maxHeightValue / 2}px`;
-    rocket.current.style.top = `${maxWidthValue / 2}px`;
+    rocket.current.style.left = `${maxWidthValue / 2}px`;
+    rocket.current.style.top = `${maxHeightValue / 2}px`;
     const step = () => {
       rocket.current.style.left = `${calculateNewValue(
         rocket.current.style.left,
@@ -476,7 +477,9 @@ const Projects = () => {
             </div>
             <div className="body" />
             <div className="satellite">
-              <div id="founded-secret-planet" className="planet">
+              <div className="planet" onClick={() => {
+                obtainMedal()
+              }}>
                 <span>ᛯ</span>
               </div>
             </div>
@@ -734,6 +737,10 @@ const Projects = () => {
       </div>
     </section>
   )
+}
+
+Projects.propTypes = {
+  obtainMedal: PropTypes.func,
 }
 
 export default Projects

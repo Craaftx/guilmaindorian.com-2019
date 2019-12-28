@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from "react"
+import PropTypes from "prop-types"
 
 let windowInnerWidth = window.innerWidth
 let pageX
 
-const Home = () => {
+const Home = ({ obtainMedal }) => {
   const layerOne = useRef()
   const layerTwo = useRef()
   const layerThree = useRef()
@@ -101,6 +102,7 @@ const Home = () => {
           <div className="rocket-route">
             <div
               className="rocket"
+              role="button"
               onClick={() => {
                 setCardIsHidden(false)
               }}
@@ -153,15 +155,16 @@ const Home = () => {
           <div className="text">
             <h4>Why do you click here ?</h4>
             <span
-              id="rocket_secret_wrapper_right_answer"
+              role="button"
               onClick={() => {
+                obtainMedal()
                 setCardIsHidden(true)
               }}
             >
               I'm curious
             </span>
             <span
-              id="rocket_secret_wrapper_false_answer"
+              role="button"
               onClick={() => {
                 setCardIsHidden(true)
               }}
@@ -173,6 +176,10 @@ const Home = () => {
       </div>
     </section>
   )
+}
+
+Home.propTypes = {
+  obtainMedal: PropTypes.func,
 }
 
 export default Home

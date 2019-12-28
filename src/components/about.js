@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 
-const About = () => {
+const About = ({ obtainMedal }) => {
   const [selectedItem, setSelectedItem] = useState(1)
 
   const ScreenContentItem = ({ number, children }) => {
@@ -312,6 +313,7 @@ const About = () => {
               selectedItem && selectedItem === 1 ? "selected" : ""
             }`}
             onClick={() => {
+              obtainMedal()
               setSelectedItem(1)
             }}
           ></div>
@@ -319,6 +321,10 @@ const About = () => {
       </div>
     </section>
   )
+}
+
+About.propTypes = {
+  obtainMedal: PropTypes.func,
 }
 
 export default About

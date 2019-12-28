@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react"
+import PropTypes from "prop-types"
 
 let windowInnerHeight = window.innerHeight
 let pageY
 
-const Contact = () => {
+const Contact = ({ obtainMedal }) => {
   const characterArm = useRef()
   const characterLamp = useRef()
   const characterHead = useRef()
@@ -50,7 +51,7 @@ const Contact = () => {
       !memory.symbol7 &&
       !memory.symbol9
     ) {
-      console.log("win")
+      obtainMedal()
     }
   }, [enigmaMemory])
 
@@ -259,14 +260,13 @@ const Contact = () => {
             </a>
           </li>
         </ul>
-        <h4>And Thanks you</h4>
         <p>
           Thank you for taking your time to read my website and I hope you
           enjoyed the small scenes created
           <b className="color-orange">&nbsp; only with CSS</b>, you can check
           the code with your inspector :D
         </p>
-        <ul className="enigma mt-4 d-none d-xl-block">
+        <ul className="enigma d-none d-xl-block">
           <li
             style={{ color: enigmaMemory.symbol1 ? "#ff9800" : "currentColor" }}
             onClick={() => {
@@ -376,6 +376,10 @@ const Contact = () => {
       </div>
     </section>
   )
+}
+
+Contact.propTypes = {
+  obtainMedal: PropTypes.func,
 }
 
 export default Contact
