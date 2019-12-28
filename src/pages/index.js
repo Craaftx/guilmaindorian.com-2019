@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 
-import 'intersection-observer';
+import "intersection-observer"
 import Observer from "react-intersection-observer"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import Navigation from "../components/navigation"
 import Separator from "../components/separator"
 import Home from "../components/home"
 import About from "../components/about"
@@ -12,15 +13,118 @@ import Projects from "../components/projects"
 import Contact from "../components/contact"
 import RewardIndicator from "../components/rewardIndicator"
 import RewardContainer from "../components/rewardContainer"
+import Medal from "../components/medal"
 
 const IndexPage = () => {
   const [homeIsVisible, setHomeIsVisible] = useState("enabled")
   const [aboutIsVisible, setAboutIsVisible] = useState("disabled")
   const [projectIsVisible, setProjectIsVisible] = useState("disabled")
   const [contactIsVisible, setContactIsVisible] = useState("disabled")
+
+  const [haveAllMedals, setHaveAllMedals] = useState()
+  const [medals, setMedals] = useState([null, null, null, null])
+
+  const medalElement = useRef()
+  const layout = useRef()
+
+  const AboutNavigation = useRef()
+  const ProjectsNavigation = useRef()
+  const ContactNavigation = useRef()
+
+  const navigationItems = [
+    {
+      label: "About",
+      handler: () => window.scrollTo(0, AboutNavigation.current.offsetTop),
+    },
+    {
+      label: "Projects",
+      handler: () => window.scrollTo(0, ProjectsNavigation.current.offsetTop),
+    },
+    {
+      label: "Contact",
+      handler: () => window.scrollTo(0, ContactNavigation.current.offsetTop),
+    },
+  ]
+
+  useEffect(() => {
+    const storedMedals = window.localStorage.getItem("gd_medals")
+    if (storedMedals) {
+      setMedals(JSON.parse(storedMedals))
+      if (
+        storedMedals[0] &&
+        storedMedals[1] &&
+        storedMedals[2] &&
+        storedMedals[3]
+      ) {
+        setHaveAllMedals(true)
+      }
+    } else {
+      window.localStorage.setItem(
+        "gd_medals",
+        JSON.stringify([null, null, null, null])
+      )
+    }
+  }, [])
+
+  const animateMedal = () => {
+    medalElement.current.style.display = "block"
+    medalElement.current.style.opacity = "1"
+    setTimeout(function() {
+      medalElement.current.style.opacity = "0"
+    }, 6000)
+    setTimeout(function() {
+      medalElement.current.style.display = "none"
+    }, 7000)
+  }
+
+  const handleMedals = index => {
+    const storedMedals = JSON.parse(window.localStorage.getItem("gd_medals"))
+    if (storedMedals[index] !== true) {
+      animateMedal()
+      setMedals(storedMedals)
+      storedMedals[index] = true
+      window.localStorage.setItem("gd_medals", JSON.stringify(storedMedals))
+      if (
+        storedMedals[0] &&
+        storedMedals[1] &&
+        storedMedals[2] &&
+        storedMedals[3]
+      ) {
+        setHaveAllMedals(true)
+      }
+    }
+  }
+
+  const handleChangeSkins = (astronaut, rocket) => {
+    let target = null
+    if (astronaut) {
+      target = "character"
+      const targetItems = Array.from(document.querySelectorAll(`.${target}`))
+      targetItems.map(character => character.setAttribute("class", target))
+      if (astronaut !== "skin_vanilla") {
+        targetItems.map(characterNode => characterNode.classList.add(astronaut))
+      }
+    }
+    if (rocket) {
+      target = "rocket"
+      const targetItems = Array.from(document.querySelectorAll(`.${target}`))
+      targetItems.map(rocket => rocket.setAttribute("class", target))
+      if (rocket !== "skin_vanilla") {
+        targetItems.map(rocketNode => rocketNode.classList.add(rocket))
+      }
+    }
+  }
+
   return (
-    <Layout>
+    <Layout ref={layout}>
       <SEO title="Web Developer, CSS Wizard" />
+      <Navigation items={navigationItems} />
+      <div
+        style={{ display: "none", opacity: "0", transition: "1s" }}
+        ref={medalElement}
+      >
+        <Medal />
+      </div>
       <Observer
         onChange={event => {
           setHomeIsVisible(event ? "enabled" : "disabled")
@@ -31,10 +135,15 @@ const IndexPage = () => {
             : "animation-disabled"
         }
       >
-        <Home />
+        <Home
+          obtainMedal={() => {
+            handleMedals(0)
+          }}
+        />
       </Observer>
       <Separator />
       <Observer
+        ref={AboutNavigation}
         onChange={event => {
           setAboutIsVisible(event ? "enabled" : "disabled")
         }}
@@ -44,10 +153,15 @@ const IndexPage = () => {
             : "animation-disabled"
         }
       >
-        <About />
+        <About
+          obtainMedal={() => {
+            handleMedals(1)
+          }}
+        />
       </Observer>
       <Separator />
       <Observer
+        ref={ProjectsNavigation}
         onChange={event => {
           setProjectIsVisible(event ? "enabled" : "disabled")
         }}
@@ -57,10 +171,15 @@ const IndexPage = () => {
             : "animation-disabled"
         }
       >
-        <Projects />
+        <Projects
+          obtainMedal={() => {
+            handleMedals(2)
+          }}
+        />
       </Observer>
       <Separator />
       <Observer
+        ref={ContactNavigation}
         onChange={event => {
           setContactIsVisible(event ? "enabled" : "disabled")
         }}
@@ -70,10 +189,20 @@ const IndexPage = () => {
             : "animation-disabled"
         }
       >
-        <Contact />
+        <Contact
+          obtainMedal={() => {
+            handleMedals(3)
+          }}
+        />
       </Observer>
-      <RewardIndicator />
-      <RewardContainer />
+      {haveAllMedals ? (
+        <>
+          <Separator />
+          <RewardContainer changeSkins={handleChangeSkins} />
+        </>
+      ) : (
+        <RewardIndicator medals={medals} />
+      )}
     </Layout>
   )
 }
