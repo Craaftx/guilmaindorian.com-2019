@@ -1,13 +1,14 @@
 import React from "react"
+import PropTypes from "prop-types"
 
-const rewardIndicator = () => {
+const rewardIndicator = ({ medals }) => {
   return (
     <section className="reward d-none d-xl-block">
-      <span id="reward-secret">
+      <span>
         There are four hidden secrets to find for unlock this part
       </span>
       <ul>
-        <li id="reward_1">
+        <li>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -16,6 +17,7 @@ const rewardIndicator = () => {
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
+            style={{display: medals[0] ? "block" : "none"}}
           >
             <path
               fill="goldenrod"
@@ -23,7 +25,7 @@ const rewardIndicator = () => {
             />
           </svg>
         </li>
-        <li id="reward_2">
+        <li>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -32,6 +34,7 @@ const rewardIndicator = () => {
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
+            style={{display: medals[1] ? "block" : "none"}}
           >
             <path
               fill="goldenrod"
@@ -39,7 +42,7 @@ const rewardIndicator = () => {
             />
           </svg>
         </li>
-        <li id="reward_3">
+        <li>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -48,6 +51,7 @@ const rewardIndicator = () => {
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
+            style={{display: medals[2] ? "block" : "none"}}
           >
             <path
               fill="goldenrod"
@@ -55,7 +59,7 @@ const rewardIndicator = () => {
             />
           </svg>
         </li>
-        <li id="reward_4">
+        <li>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -64,6 +68,7 @@ const rewardIndicator = () => {
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
+            style={{display: medals[3] ? "block" : "none"}}
           >
             <path
               fill="goldenrod"
@@ -74,6 +79,10 @@ const rewardIndicator = () => {
       </ul>
     </section>
   )
+}
+
+rewardIndicator.propTypes = {
+  obtainMedal: PropTypes.array,
 }
 
 export default rewardIndicator;
