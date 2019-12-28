@@ -1,15 +1,14 @@
-import React from "react"
+import React, { useRef } from "react"
 import PropTypes from "prop-types"
 
 import "../scss/index.scss"
 
-import Navigation from "./navigation"
 import Footer from "./footer"
 
 const Layout = ({ children }) => {
+
   return (
     <>
-      <Navigation />
       <main>{children}</main>
       <Footer />
     </>

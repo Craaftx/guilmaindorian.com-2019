@@ -1,6 +1,7 @@
 import React from "react"
+import PropTypes from "prop-types"
 
-const Navigation = () => {
+const Navigation = ({ items }) => {
   return (
     <nav className="navigation">
       <div className="navigation-brand">
@@ -9,14 +10,17 @@ const Navigation = () => {
       </div>
       <div className="navigation-items">
         <ul>
-          <li>About</li>
-          <li>Projects</li>
-          <li>Contact</li>
-          <li>Blog</li>
+          {items.map(item => 
+            <li onClick={item.handler}>{item.label}</li>
+          )}
         </ul>
       </div>
     </nav>
   )
+}
+
+Navigation.propTypes = {
+  children: PropTypes.array,
 }
 
 export default Navigation;
