@@ -53,7 +53,7 @@ const Contact = ({ obtainMedal }) => {
     ) {
       obtainMedal()
     }
-  }, [enigmaMemory])
+  }, [enigmaMemory, obtainMedal])
 
   return (
     <section
