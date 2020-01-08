@@ -27,25 +27,6 @@ const IndexPage = () => {
   const medalElement = useRef()
   const layout = useRef()
 
-  const AboutNavigation = useRef()
-  const ProjectsNavigation = useRef()
-  const ContactNavigation = useRef()
-
-  const navigationItems = [
-    {
-      label: "About",
-      handler: () => window.scrollTo(0, AboutNavigation.current.offsetTop),
-    },
-    {
-      label: "Projects",
-      handler: () => window.scrollTo(0, ProjectsNavigation.current.offsetTop),
-    },
-    {
-      label: "Contact",
-      handler: () => window.scrollTo(0, ContactNavigation.current.offsetTop),
-    },
-  ]
-
   useEffect(() => {
     const storedMedals = window.localStorage.getItem("gd_medals")
     if (storedMedals) {
@@ -118,7 +99,7 @@ const IndexPage = () => {
   return (
     <Layout ref={layout}>
       <SEO title="Web Developer, CSS Wizard" />
-      <Navigation items={navigationItems} />
+      <Navigation />
       <div
         style={{ display: "none", opacity: "0", transition: "1s" }}
         ref={medalElement}
@@ -143,7 +124,7 @@ const IndexPage = () => {
       </Observer>
       <Separator />
       <Observer
-        ref={AboutNavigation}
+        id="about"
         onChange={event => {
           setAboutIsVisible(event ? "enabled" : "disabled")
         }}
@@ -161,7 +142,7 @@ const IndexPage = () => {
       </Observer>
       <Separator />
       <Observer
-        ref={ProjectsNavigation}
+        id="projects"
         onChange={event => {
           setProjectIsVisible(event ? "enabled" : "disabled")
         }}
@@ -179,7 +160,7 @@ const IndexPage = () => {
       </Observer>
       <Separator />
       <Observer
-        ref={ContactNavigation}
+        id="contact"
         onChange={event => {
           setContactIsVisible(event ? "enabled" : "disabled")
         }}

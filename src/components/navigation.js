@@ -1,7 +1,7 @@
 import React from "react"
-import PropTypes from "prop-types"
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
-const Navigation = ({ items }) => {
+const Navigation = () => {
   return (
     <nav className="navigation">
       <div className="navigation-brand">
@@ -10,17 +10,18 @@ const Navigation = ({ items }) => {
       </div>
       <div className="navigation-items">
         <ul>
-          {items.map(item => 
-            <li onClick={item.handler}>{item.label}</li>
-          )}
+            <li>
+              <AnchorLink href='#about'>About</AnchorLink>
+            </li>
+            <li>
+              <AnchorLink href='#projects'>Projects</AnchorLink>
+            </li>
+            <li>
+              <AnchorLink href='#contact'>Contact</AnchorLink>
+            </li>
         </ul>
       </div>
     </nav>
   )
 }
-
-Navigation.propTypes = {
-  children: PropTypes.array,
-}
-
 export default Navigation;
