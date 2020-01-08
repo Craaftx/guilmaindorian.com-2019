@@ -25,7 +25,6 @@ const IndexPage = () => {
   const [medals, setMedals] = useState([null, null, null, null])
 
   const medalElement = useRef()
-  const layout = useRef()
 
   useEffect(() => {
     const storedMedals = window.localStorage.getItem("gd_medals")
@@ -97,7 +96,7 @@ const IndexPage = () => {
   }
 
   return (
-    <Layout ref={layout}>
+    <Layout>
       <SEO title="Web Developer, CSS Wizard" />
       <Navigation />
       <div
