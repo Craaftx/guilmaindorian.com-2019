@@ -8,7 +8,7 @@ const RewardContainer = ({ changeSkins }) => {
 
   useEffect(() => {
     changeSkins(astronautSkin, rocketSkin)
-  }, [astronautSkin, rocketSkin])
+  }, [astronautSkin, rocketSkin, changeSkins])
 
   const twitterShareUrl =
     "https://twitter.com/intent/tweet?text=Hey%2C%20I%20beat%20you%20%40Craaftx1%20!!!%20%0A%0AI%20just%20found%20all%20the%20secrets%20you%27ve%20hidden%20on%20www.guilmaindorian.com%20%F0%9F%98%8E%0Apic.twitter.com%2FQh9D0Q2lO5"
