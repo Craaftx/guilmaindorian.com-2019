@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react"
+import React, { useRef, useEffect, useCallback, useState } from "react"
 import PropTypes from "prop-types"
 
 const distancePerIteration = 4
@@ -15,38 +15,39 @@ let keysPressed = {
   68: null,
 }
 
+
 const initialRocketLeft = `${maxWidthValue / 2}px`
 
 const Projects = ({ obtainMedal }) => {
-  let keyboard = {
+  const [keyboard, setKeyboard] = useState({
     layout: "Azerty",
     keyTop: { label: "Z", value: 90 },
     keyBottom: { label: "S", value: 83 },
     keyLeft: { label: "Q", value: 81 },
     keyRight: { label: "D", value: 68 },
-  }
+  });
 
   const switchKeyboard = layout => {
     if (layout === "Qwerty") {
-      keyboard = {
+      setKeyboard({
         layout: "Qwerty",
         keyTop: { label: "W", value: 87 },
         keyBottom: { label: "S", value: 83 },
         keyLeft: { label: "A", value: 65 },
         keyRight: { label: "D", value: 68 },
-      }
+      })
       keyTop.current.innerHTML = keyboard.keyTop.label
       keyBottom.current.innerHTML = keyboard.keyBottom.label
       keyLeft.current.innerHTML = keyboard.keyLeft.label
       keyRight.current.innerHTML = keyboard.keyRight.label
     } else {
-      keyboard = {
+      setKeyboard({
         layout: "Azerty",
         keyTop: { label: "Z", value: 90 },
         keyBottom: { label: "S", value: 83 },
         keyLeft: { label: "Q", value: 81 },
         keyRight: { label: "D", value: 68 },
-      }
+      })
       keyTop.current.innerHTML = keyboard.keyTop.label
       keyBottom.current.innerHTML = keyboard.keyBottom.label
       keyLeft.current.innerHTML = keyboard.keyLeft.label
@@ -213,10 +214,7 @@ const Projects = ({ obtainMedal }) => {
       return newValue < 0 ? 0 : newValue > maxValue ? maxValue : newValue
     },
     [
-      keyboard.keyLeft.value,
-      keyboard.keyTop.value,
-      keyboard.keyRight.value,
-      keyboard.keyBottom.value,
+      keyboard,
     ]
   )
 
