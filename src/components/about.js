@@ -171,7 +171,7 @@ const About = ({ obtainMedal }) => {
                   turns around another black rock all in a space vacuum
                   incompatible with man. Despite our ego it's amazing because we
                   are nothing in this universe <br />
-                  Going into space is a fucking dream but actualy to complicated
+                  Going into space is a fucking dream but actually to complicated
                 </p>
               </div>
             </ScreenContentItem>
