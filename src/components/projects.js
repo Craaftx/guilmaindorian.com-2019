@@ -600,7 +600,7 @@ const Projects = ({ obtainMedal }) => {
         </div>
       </div>
       <div className="list-project d-lg-none">
-        <div className="row item-project">
+        <div className="row row-no-padding item-project">
           <div className="col-5 col-sm-6 item-planet">
             <div className="planet-2 project-planet">
               <div className="shadow" />
@@ -628,7 +628,7 @@ const Projects = ({ obtainMedal }) => {
             </div>
           </div>
         </div>
-        <div className="row item-project right">
+        <div className="row row-no-padding item-project right">
           <div className="col-5 col-sm-6 item-planet">
             <div className="planet-3 project-planet">
               <div className="shadow" />
@@ -656,7 +656,7 @@ const Projects = ({ obtainMedal }) => {
             </div>
           </div>
         </div>
-        <div className="row item-project">
+        <div className="row row-no-padding item-project">
           <div className="col-5 col-sm-6 item-planet">
             <div className="planet-5 project-planet">
               <div className="shadow" />
@@ -689,7 +689,7 @@ const Projects = ({ obtainMedal }) => {
             </div>
           </div>
         </div>
-        <div className="row item-project right">
+        <div className="row row-no-padding item-project right">
           <div className="col-5 col-sm-6 item-planet">
             <div className="planet-6 project-planet">
               <div className="body" />
@@ -721,7 +721,7 @@ const Projects = ({ obtainMedal }) => {
             </div>
           </div>
         </div>
-        <div className="row item-project">
+        <div className="row row-no-padding item-project">
           <div className="col-5 col-sm-6 item-planet">
             <div className="planet-7 project-planet">
               <div className="body" />
