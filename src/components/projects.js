@@ -204,7 +204,7 @@ const Projects = ({ obtainMedal }) => {
     window.addEventListener("keyup", e => {
       keyUpEventHandler(e)
     })
-  }, [])
+  }, [keyboard])
 
   const calculateNewValue = useCallback(
     (oldValue, axis) => {

@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 import "../scss/index.scss"
@@ -6,10 +6,9 @@ import "../scss/index.scss"
 import Footer from "./footer"
 
 const Layout = ({ children }) => {
-
   return (
     <>
-      <main style={{minHeight: "100vh"}}>{children}</main>
+      <main style={{ minHeight: "100vh" }}>{children}</main>
       <Footer />
     </>
   )

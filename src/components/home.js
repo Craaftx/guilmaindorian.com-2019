@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
-let windowInnerWidth = 1280;
+let windowInnerWidth = 1280
 let pageX
 
 const Home = ({ obtainMedal }) => {
