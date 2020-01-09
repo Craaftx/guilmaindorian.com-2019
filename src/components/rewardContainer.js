@@ -17,12 +17,12 @@ const RewardContainer = ({ changeSkins }) => {
     <section className="reward-wrapper">
       <div className="row justify-content-center">
         <div className="col-lg-8 col-md-12 text-wrapper">
-          <h1 className="color-primary">Here you are !</h1>
+          <h1 className="color-primary">You did it !</h1>
           <b>Congratulations you are very curious</b>
           <p>
-            You have discovered all the clues, thanks for playing with my code!
-            I do not have a thousand ways to thank you, so I created a little
-            gift just for you to thank you for your participation!
+            You have discovered all the secrets, thank you for playing with my
+            code! I don't have a thousand ways to thank you, so I created a
+            small gift just for you. Thanks again
           </p>
           <a
             href={twitterShareUrl}
@@ -91,7 +91,7 @@ const RewardContainer = ({ changeSkins }) => {
               >
                 Invisible
               </span>
-              
+
               <h4>Rocket Skins</h4>
               <span
                 className="r_skin_vanilla"

@@ -44,6 +44,7 @@ const IndexPage = () => {
         JSON.stringify([null, null, null, null])
       )
     }
+    console.log("Oye developer, you can't find a secret here, but you can cheat with the developer tools, but cheating is for the weak? Are you weak? 😎");
   }, [])
 
   const animateMedal = () => {

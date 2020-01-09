@@ -44,11 +44,12 @@ const About = ({ obtainMedal }) => {
               <div className="screen-content__item__text">
                 <h3>About me</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam tempor tempus ex ac gravida. In rutrum urna in augue
-                  vehicula, quis viverra sem sollicitudin. In justo odio, mollis
-                  quis orci quis, tempor euismod lorem. Aliquam nunc felis,
-                  eleifend eu vulputate vel, placerat sed justo.
+                  My name is Dorian I am a {new Date().getFullYear() - 1997}{" "}
+                  year old web developer who mainly codes in Javascript, I like
+                  to create funny things with CSS and I also do web design. I
+                  always try to improve my skills and I have tons of new ideas
+                  everyday in my head so I spend a lot of time creating new
+                  projects
                 </p>
               </div>
             </ScreenContentItem>
@@ -71,11 +72,11 @@ const About = ({ obtainMedal }) => {
               <div className="screen-content__item__text">
                 <h3>Player</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam tempor tempus ex ac gravida. In rutrum urna in augue
-                  vehicula, quis viverra sem sollicitudin. In justo odio, mollis
-                  quis orci quis, tempor euismod lorem. Aliquam nunc felis,
-                  eleifend eu vulputate vel, placerat sed justo.
+                  I'm a big FPS player mainly CSGO and Overwatch but I spent a
+                  few years playing RPGs like World of Warcraft. This is one of
+                  the reasons why many of my projects are oriented towards the
+                  world of video games. <br />
+                  Console or PC? PC of course
                 </p>
               </div>
             </ScreenContentItem>
@@ -90,11 +91,11 @@ const About = ({ obtainMedal }) => {
               <div className="screen-content__item__text">
                 <h3>CSS Wizard</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam tempor tempus ex ac gravida. In rutrum urna in augue
-                  vehicula, quis viverra sem sollicitudin. In justo odio, mollis
-                  quis orci quis, tempor euismod lorem. Aliquam nunc felis,
-                  eleifend eu vulputate vel, placerat sed justo.
+                  I discovered CSS images through a @sashatran post and I
+                  immediately loved making them, with my imagination overflowing
+                  there was no shortage of ideas. Then I experimented a lot with
+                  CSS and started to participate in CSS challenges (like Codepen
+                  Challenges) in order to learn more and more.
                 </p>
               </div>
             </ScreenContentItem>
@@ -109,11 +110,11 @@ const About = ({ obtainMedal }) => {
               <div className="screen-content__item__text">
                 <h3>Developer</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam tempor tempus ex ac gravida. In rutrum urna in augue
-                  vehicula, quis viverra sem sollicitudin. In justo odio, mollis
-                  quis orci quis, tempor euismod lorem. Aliquam nunc felis,
-                  eleifend eu vulputate vel, placerat sed justo.
+                  I started developing out of curiosity when I was young,
+                  wanting to know how to code a game. After that I set up my
+                  first websites to gather the community of game servers that I
+                  managed. I love coding in a quiet place with headphones on my
+                  ears and loud music
                 </p>
               </div>
             </ScreenContentItem>
@@ -145,11 +146,12 @@ const About = ({ obtainMedal }) => {
               <div className="screen-content__item__text">
                 <h3>Memes Addict</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam tempor tempus ex ac gravida. In rutrum urna in augue
-                  vehicula, quis viverra sem sollicitudin. In justo odio, mollis
-                  quis orci quis, tempor euismod lorem. Aliquam nunc felis,
-                  eleifend eu vulputate vel, placerat sed justo.
+                  "You son of a bitch I'm in" - Morty Smity
+                  <br />I spend so much time on the Internet that I discover new
+                  memes every day. It's one of the best ways to express yourself
+                  and to make fun of current news on the web.
+                  <br />
+                  Understanding memes without text is the final level
                 </p>
               </div>
             </ScreenContentItem>
@@ -165,11 +167,12 @@ const About = ({ obtainMedal }) => {
               <div className="screen-content__item__text">
                 <h3>Space Lover</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam tempor tempus ex ac gravida. In rutrum urna in augue
-                  vehicula, quis viverra sem sollicitudin. In justo odio, mollis
-                  quis orci quis, tempor euismod lorem. Aliquam nunc felis,
-                  eleifend eu vulputate vel, placerat sed justo.
+                  A human on a rock turning around another burning rock which
+                  turns around another black rock all in a space vacuum
+                  incompatible with man. Despite our ego it's amazing because we
+                  are nothing in this universe <br />
+                  Going into space is a fucking dream but it's to complicated for the
+                  moment
                 </p>
               </div>
             </ScreenContentItem>

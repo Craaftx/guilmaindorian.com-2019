@@ -166,9 +166,9 @@ const Contact = ({ obtainMedal }) => {
       <div className="text-wrapper">
         <h1 className="title-underline">Contact</h1>
         <p>
-          Whether you want to know more about me or to talk to me about a
-          professional project or to ask me more questions, do not hesitate to
-          contact me via my social networks.
+          Whether you want to know more about me, tell me about a professional
+          project or ask me specific questions, do not hesitate to contact me
+          via my social networks.
         </p>
         <ul className="social">
           <li>
@@ -261,10 +261,10 @@ const Contact = ({ obtainMedal }) => {
           </li>
         </ul>
         <p>
-          Thank you for taking your time to read my website and I hope you
-          enjoyed the small scenes created
-          <b className="color-orange">&nbsp; only with CSS</b>, you can check
-          the code with your inspector :D
+          Thank you for taking your time to explore my website and I hope you
+          enjoyed the small scenes created{" "}
+          <b className="color-orange">with a LOT of CSS</b> of course you can
+          check the code with your inspector :D
         </p>
         <ul className="enigma d-none d-xl-block">
           <li
