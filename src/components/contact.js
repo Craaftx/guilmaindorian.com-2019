@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react"
 import PropTypes from "prop-types"
 
-let windowInnerHeight = window.innerHeight
 let pageY
 
 const Contact = ({ obtainMedal }) => {
+  let windowInnerHeight = "600"
   const characterArm = useRef()
   const characterLamp = useRef()
   const characterHead = useRef()
@@ -25,6 +25,7 @@ const Contact = ({ obtainMedal }) => {
   }
 
   useEffect(() => {
+    windowInnerHeight = window.innerHeight
     let ref
     const step = () => {
       characterArm.current.style.transform = `rotate(${-60 + pageY / 10}deg)`

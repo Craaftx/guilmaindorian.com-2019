@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
-let windowInnerWidth = window.innerWidth
+let windowInnerWidth = 1280;
 let pageX
 
 const Home = ({ obtainMedal }) => {
@@ -16,6 +16,7 @@ const Home = ({ obtainMedal }) => {
   }
 
   useEffect(() => {
+    windowInnerWidth = window.innerWidth
     let ref
     const step = () => {
       layerOne.current.style.transform = `translateX(-${50 + pageX / 200}%)`

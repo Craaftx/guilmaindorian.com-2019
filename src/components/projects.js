@@ -3,9 +3,6 @@ import PropTypes from "prop-types"
 
 const distancePerIteration = 4
 
-const maxWidthValue = window.innerWidth - 100
-const maxHeightValue = window.innerHeight - 100
-
 let keysPressed = {
   90: null,
   87: null,
@@ -15,17 +12,24 @@ let keysPressed = {
   68: null,
 }
 
-
-const initialRocketLeft = `${maxWidthValue / 2}px`
-
 const Projects = ({ obtainMedal }) => {
+  let maxWidthValue = 1200 - 100
+  let maxHeightValue = 600 - 100
+  let initialRocketLeft = `${maxWidthValue / 2}px`
+
+  useEffect(() => {
+    maxWidthValue = window.innerWidth - 100
+    maxHeightValue = window.innerHeight - 100
+    initialRocketLeft = `${maxWidthValue / 2}px`
+  }, [])
+
   const [keyboard, setKeyboard] = useState({
     layout: "Azerty",
     keyTop: { label: "Z", value: 90 },
     keyBottom: { label: "S", value: 83 },
     keyLeft: { label: "Q", value: 81 },
     keyRight: { label: "D", value: 68 },
-  });
+  })
 
   const switchKeyboard = layout => {
     if (layout === "Qwerty") {
@@ -192,13 +196,15 @@ const Projects = ({ obtainMedal }) => {
     }
   }
 
-  window.addEventListener("keydown", e => {
-    keyDownEventHandler(e)
-  })
+  useEffect(() => {
+    window.addEventListener("keydown", e => {
+      keyDownEventHandler(e)
+    })
 
-  window.addEventListener("keyup", e => {
-    keyUpEventHandler(e)
-  })
+    window.addEventListener("keyup", e => {
+      keyUpEventHandler(e)
+    })
+  }, [])
 
   const calculateNewValue = useCallback(
     (oldValue, axis) => {
@@ -213,15 +219,13 @@ const Projects = ({ obtainMedal }) => {
         (keysPressed[keyCode2] ? distancePerIteration : 0)
       return newValue < 0 ? 0 : newValue > maxValue ? maxValue : newValue
     },
-    [
-      keyboard,
-    ]
+    [keyboard]
   )
 
   useEffect(() => {
     let ref
-    rocket.current.style.left = `${maxWidthValue / 2}px`;
-    rocket.current.style.top = `${maxHeightValue / 2}px`;
+    rocket.current.style.left = `${maxWidthValue / 2}px`
+    rocket.current.style.top = `${maxHeightValue / 2}px`
     const step = () => {
       rocket.current.style.left = `${calculateNewValue(
         rocket.current.style.left,
@@ -475,9 +479,12 @@ const Projects = ({ obtainMedal }) => {
             </div>
             <div className="body" />
             <div className="satellite">
-              <div className="planet" onClick={() => {
-                obtainMedal()
-              }}>
+              <div
+                className="planet"
+                onClick={() => {
+                  obtainMedal()
+                }}
+              >
                 <span>ᛯ</span>
               </div>
             </div>
