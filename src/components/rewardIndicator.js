@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 const rewardIndicator = ({ medals }) => {
   return (
-    <section className="reward d-none d-xl-block">
+    <div className="reward d-none d-xl-block">
       <span>
         There are four hidden secrets to find for unlock this part
       </span>
@@ -77,7 +77,7 @@ const rewardIndicator = ({ medals }) => {
           </svg>
         </li>
       </ul>
-    </section>
+    </div>
   )
 }
 
