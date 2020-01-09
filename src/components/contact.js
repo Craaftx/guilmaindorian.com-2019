@@ -264,7 +264,7 @@ const Contact = ({ obtainMedal }) => {
         <p>
           Thank you for taking your time to explore my website and I hope you
           enjoyed the small scenes created{" "}
-          <b className="color-orange">with a LOT of CSS</b> of course you can
+          <b className="color-orange">without images or svg but with a LOT of CSS</b> of course you can
           check the code with your inspector :D
         </p>
         <ul className="enigma d-none d-xl-block">
