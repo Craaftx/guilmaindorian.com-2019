@@ -27,9 +27,9 @@ const IndexPage = () => {
   const medalElement = useRef()
 
   useEffect(() => {
-    const storedMedals = window.localStorage.getItem("gd_medals")
+    const storedMedals = JSON.parse(window.localStorage.getItem("gd_medals"));
     if (storedMedals) {
-      setMedals(JSON.parse(storedMedals))
+      setMedals(storedMedals)
       if (
         storedMedals[0] &&
         storedMedals[1] &&
