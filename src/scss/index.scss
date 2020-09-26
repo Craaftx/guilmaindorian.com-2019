@@ -12,11 +12,12 @@
 @import "secret";
 @import "keyframes";
 @import "responsive";
+@import "cssda";
 
 .animation-disabled * {
-    animation-play-state: paused !important;
+  animation-play-state: paused !important;
 }
 
 .animation-enabled * {
-    animation-play-state: running;
+  animation-play-state: running;
 }
